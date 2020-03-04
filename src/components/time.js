@@ -8,9 +8,12 @@ const Time = () => {
     const [currentTime, setCurrentTime] = useState(null);
 
     useEffect(() => {
-        setInterval( () => {
+        const timer = setInterval( () => {
             setCurrentTime(new Date().toLocaleString())
           }, 1000)
+
+          return () => clearInterval(timer);
+
     }, [])
 
     return (

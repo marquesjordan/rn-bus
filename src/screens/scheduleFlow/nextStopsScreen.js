@@ -1,5 +1,5 @@
 import React, {useEffect, useContext, useState} from 'react';
-import {View, Text, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, FlatList} from 'react-native';
 import {Context as ScheduleContext} from '../../contexts/scheduleContext';
 import Time from '../../components/time';
 
@@ -21,8 +21,9 @@ const NextStopsScreen = ({navigation}) => {
                 setCurrentMin(n);
             }
         }, 1000)
-
-        getStopTimes({"stops": list})
+        const event = new Date();
+        const utc = event.getTimezoneOffset();
+        getStopTimes({"stops": list, "time": event.getTime(), "utc": utc})
         return () => clearInterval(timer);
 
     }, [currentMin]);
