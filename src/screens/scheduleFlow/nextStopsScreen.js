@@ -9,7 +9,6 @@ const NextStopsScreen = ({navigation}) => {
     const [currentMin, setCurrentMin] = useState(null);
 
     useEffect(() => {
-        navigation.setParams({'onBack': onBackClick})
 
         const list = navigation.state.params.list.map( (item) => {
             return item.value
@@ -28,10 +27,6 @@ const NextStopsScreen = ({navigation}) => {
 
     }, [currentMin]);
 
-    const onBackClick = () => {
-        navigation.navigate('stopsSelect');
-    }
-    
     const _render = (item) => {
         return (
             <View style={styles.itemContainer}>
@@ -78,13 +73,8 @@ const NextStopsScreen = ({navigation}) => {
 
 NextStopsScreen.navigationOptions = ({navigation}) => {
     return {
-      headerTitle: "Upcominig Schedule",
-      headerTintColor: '#000',
-      headerLeft: () => (
-        <TouchableOpacity onPress={() => navigation.getParam('onBack')()}> 
-            <Text style={{ fontSize: 18, color: '#6F9FD8', paddingHorizontal: 10}}>Back</Text>
-        </TouchableOpacity>
-      )
+      headerTitle: "Upcominig Stops",
+      headerTintColor: '#000'
     }
 }
 
